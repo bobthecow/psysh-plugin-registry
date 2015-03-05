@@ -2,7 +2,7 @@
 
 namespace Psy\PluginRegistry;
 
-abstract class AbstractPlugin
+abstract class AbstractPlugin implements Plugin, CommandProvider, MatcherProvider, PresenterProvider
 {
     public static function register()
     {
@@ -12,35 +12,10 @@ abstract class AbstractPlugin
     /**
      * @return string
      */
-    final public static function getName()
-    {
-        $class = new \ReflectionClass(get_called_class());
-
-        return preg_replace('#Plugin$#', '', $class->getShortName());
-    }
+    abstract public static function getName();
 
     /**
-     * @param array $configuration
-     *
-     * @return array
-     */
-    final public static function getConfiguration($configuration = array())
-    {
-        return array_merge_recursive(
-            $configuration,
-            array(
-               'commands'   => static::getCommands(),
-               'presenters' => static::getPresenters(),
-               'matchers'   => static::getMatchers(),
-                // if any more parts of the config are exposed publicly, remember to add here with the static ref.
-            )
-        );
-    }
-
-    // any publicly exposed configuration piece below here ↓
-
-    /**
-     * @return array
+     * @return Symfony\Component\Console\Command\Command[]
      */
     public static function getCommands()
     {
@@ -49,18 +24,18 @@ abstract class AbstractPlugin
     }
 
     /**
-     * @return array
+     * @return Psy\TabCompletion\Matcher\AbstractMatcher[]
      */
-    public static function getPresenters()
+    public static function getMatchers()
     {
         // add your own presenters
         return array();
     }
 
     /**
-     * @return array
+     * @return Psy\Presenter\Presenter[]
      */
-    public static function getMatchers()
+    public static function getPresenters()
     {
         // add your own presenters
         return array();
