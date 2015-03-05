@@ -1,8 +1,8 @@
 <?php
 
-namespace Psy\Plugin;
+namespace Psy\PluginRegistry;
 
-class Manager
+class Registry
 {
     /** @var AbstractPlugin[] */
     protected static $plugins = array();

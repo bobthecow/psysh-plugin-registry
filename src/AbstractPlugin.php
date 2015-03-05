@@ -1,12 +1,12 @@
 <?php
 
-namespace Psy\Plugin;
+namespace Psy\PluginRegistry;
 
 abstract class AbstractPlugin
 {
     public static function register()
     {
-        Manager::register(new static(), static::getName());
+        Registry::register(new static());
     }
 
     /**
