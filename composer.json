@@ -1,0 +1,19 @@
+{
+    "name": "psy/plugin-registry",
+    "description": "PsySH plugin registry",
+    "homepage": "http://psysh.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Justin Hileman",
+            "email": "justin@justinhileman.info",
+            "homepage": "http://justinhileman.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Psy\\PluginRegistry\\": "src"
+        }
+    }
+}
