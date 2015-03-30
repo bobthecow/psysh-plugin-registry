@@ -16,6 +16,8 @@ namespace Psy\PluginRegistry;
  */
 class Registry
 {
+    const VERSION = 'v0.1.0-dev';
+
     /** @var Plugin[] */
     protected static $plugins = array();
 
